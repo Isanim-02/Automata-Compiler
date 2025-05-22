@@ -43,19 +43,19 @@ def simulate_dfa(dfa, input_string):
     accepted = current_state in dfa.accept_states
     return path, accepted, None
     
-def draw_dfa(dfa, active_state=None):
-    """Draw the DFA highlighting the active_state."""
+def draw_dfa(dfa, active_state=None, active_edge=None):
+    """Draw the DFA highlighting the active_state and optionally an active_edge (transition)."""
     dot = graphviz.Digraph(engine='dot')  # Use 'dot' for horizontal layout
     
     # Set graph attributes for better horizontal layout with fixed zoom
     base_size = 30
-    zoom_factor = 0.50  # Fixed zoom level
+    zoom_factor = 0.60  # Fixed zoom level
     zoomed_size = base_size * zoom_factor
     dot.attr(rankdir='LR', size=f'{zoomed_size},{zoomed_size/3}', dpi='73', splines='true')
     dot.attr('node', shape='circle', style='filled', fillcolor='white', 
              fontname='Arial', fontsize=str(20 * zoom_factor), width=str(1 * zoom_factor), height=str(1 * zoom_factor),
              margin='0.2', penwidth='2')
-    dot.attr('edge', fontname='Arial', fontsize=str(20 * zoom_factor), penwidth='1.2')
+    dot.attr('edge', fontname='Arial', fontsize=str(20 * zoom_factor))
 
     # Draw nodes
     for state in dfa.states:
@@ -80,13 +80,16 @@ def draw_dfa(dfa, active_state=None):
 
     # Draw edges with curved arrows and better spacing
     for (from_state, symbol), to_state in dfa.transition_function.items():
+        edge_kwargs = {}
+        if active_edge and (from_state, symbol, to_state) == active_edge:
+            edge_kwargs = {'color': 'darkgreen', 'penwidth': '3'}
         if from_state == to_state:
             # Self-loop
             dot.edge(from_state, to_state, label=symbol, 
-                    constraint='false', penwidth='1.2')
+                    constraint='false', **edge_kwargs)
         else:
             dot.edge(from_state, to_state, label=symbol, 
-                    constraint='true', penwidth='1.2')
+                    constraint='true', **edge_kwargs)
 
     return dot
 def draw_input_pointer(input_string, position):
@@ -280,7 +283,7 @@ with tab1:
         dfa = dfa_01
         alphabet = alphabet_01
         dfa_title = "🌟 DFA Compiler & Visualizer (0 and 1)"
-        dfa_pattern = "This DFA matches the pattern:(1+0)\*(11+00+101+010)(11+00)\*(11+00+0+1)(1+0+11)(11+00)\*(101+000+111)(1+0)\*(101+000+111+001+100)(11+00+1+0)\*"
+        dfa_pattern = "This DFA matches the pattern:(1+0)\*(11+00+101+010)(11+00)\*(11+00+0+1)(1+0+11)(11+00)\*(101+000+111)(1+0)\*(101+000+111+001+100)(11+00+1+0)"
         st.sidebar.title("Valid String Examples")
         st.sidebar.code("""
         110011
@@ -337,8 +340,12 @@ with tab1:
                                 
                                 # Update the main visualization for each step
                                 for step_idx, (state, symbol) in enumerate(path):
-                                    # Update the main visualization
-                                    dfa_placeholder.graphviz_chart(draw_dfa(dfa, active_state=state))
+                                    if step_idx > 0:
+                                        prev_state, _ = path[step_idx - 1]
+                                        active_edge = (prev_state, symbol, state)
+                                    else:
+                                        active_edge = None
+                                    dfa_placeholder.graphviz_chart(draw_dfa(dfa, active_state=state, active_edge=active_edge))
                                     
                                     # show input string with moving pointer
                                     with input_placeholder.container():
