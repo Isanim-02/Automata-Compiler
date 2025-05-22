@@ -418,7 +418,7 @@ with tab3:
     else:
         st.write("PDA Visualization for (0 and 1) pattern")
         try:
-            pda_image = Image.open("pda1_0.jpg")
+            pda_image = Image.open("494359347_2295752140838959_2054055215976526836_n.jpg")
             st.image(pda_image, caption="PDA Diagram for (0 and 1)", use_container_width=True)
         except Exception as e:
             st.error(f"Error loading PDA image: {str(e)}")
