@@ -382,14 +382,14 @@ with tab2:
         st.write("Context-Free Grammar for (a and b) pattern")
         try:
             cfg_image = Image.open("cfg_a&b.jpg")
-            st.image(cfg_image, caption="CFG Diagram for (a and b)", use_column_width=True)
+            st.image(cfg_image, caption="CFG Diagram for (a and b)", use_container_width=True)
         except Exception as e:
             st.error(f"Error loading CFG image: {str(e)}")
     else:
         st.write("Context-Free Grammar for (0 and 1) pattern")
         try:
             cfg_image = Image.open("cfg1_0.jpg")
-            st.image(cfg_image, caption="CFG Diagram for (0 and 1)", use_column_width=True)
+            st.image(cfg_image, caption="CFG Diagram for (0 and 1)", use_container_width=True)
         except Exception as e:
             st.error(f"Error loading CFG image: {str(e)}")
 
@@ -405,14 +405,14 @@ with tab3:
         st.write("PDA Visualization for (a and b) pattern")
         try:
             pda_image = Image.open("494813958_1219890723098024_7236129594408158240_n.jpg")
-            st.image(pda_image, caption="PDA Diagram for (a and b)", use_column_width=True)
+            st.image(pda_image, caption="PDA Diagram for (a and b)", use_container_width=True)
         except Exception as e:
             st.error(f"Error loading PDA image: {str(e)}")
     else:
         st.write("PDA Visualization for (0 and 1) pattern")
         try:
             pda_image = Image.open("494691865_919895100199682_529064143852684040_n.jpg")
-            st.image(pda_image, caption="PDA Diagram for (0 and 1)", use_column_width=True)
+            st.image(pda_image, caption="PDA Diagram for (0 and 1)", use_container_width=True)
         except Exception as e:
             st.error(f"Error loading PDA image: {str(e)}")
 
