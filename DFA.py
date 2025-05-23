@@ -45,8 +45,8 @@ def simulate_dfa(dfa, input_string):
     
 def draw_dfa(dfa, active_state=None, active_edge=None):
     """Draw the DFA highlighting the active_state and optionally an active_edge (transition)."""
-    dot = graphviz.Digraph(engine='dot')  # Use 'dot' for horizontal layout
-    dot.attr(rankdir='LR', size='14,8')
+    dot = graphviz.Digraph()  
+    dot.attr(rankdir='LR', size="14,8")
    
 
     # Draw nodes
