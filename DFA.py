@@ -267,9 +267,11 @@ with tab1:
         dfa_pattern = "This DFA matches the pattern: (a+b)\*(aa+bb)(aa+bb)\*(ab+ba+aba)(bab+aba+bbb)(a+b+aa+bb)\*(bb+aa+aba)(aaa+bba+bab)(aaa+bba+bab)\*"
         st.sidebar.title("Valid String Examples")
         st.sidebar.code("""
-        aabbaa
-        bbabab
-        aababab
+        baabbabaabaababba
+        bbabababbbbab
+        bbbabbbbbbab
+        aaababbbbbaaa
+        aabababbbbba
         """)
     else:
         dfa = dfa_01
@@ -278,9 +280,11 @@ with tab1:
         dfa_pattern = "This DFA matches the pattern:(1+0)\*(11+00+101+010)(11+00)\*(11+00+0+1)(1+0+11)(11+00)\*(101+000+111)(1+0)\*(101+000+111+001+100)(11+00+1+0)\*"
         st.sidebar.title("Valid String Examples")
         st.sidebar.code("""
-        110011
-        0010101
-        01011
+        101011101101
+        010110101000
+        0011000111
+        010110101001
+        11111111111
         """)
 
     st.title(dfa_title)
