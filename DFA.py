@@ -46,16 +46,8 @@ def simulate_dfa(dfa, input_string):
 def draw_dfa(dfa, active_state=None, active_edge=None):
     """Draw the DFA highlighting the active_state and optionally an active_edge (transition)."""
     dot = graphviz.Digraph(engine='dot')  # Use 'dot' for horizontal layout
-    
-    # Set graph attributes for better horizontal layout with fixed zoom
-    base_size = 30
-    zoom_factor = 0.60  # Fixed zoom level
-    zoomed_size = base_size * zoom_factor
-    dot.attr(rankdir='LR', size=f'{zoomed_size},{zoomed_size/3}', dpi='73', splines='true')
-    dot.attr('node', shape='circle', style='filled', fillcolor='white', 
-             fontname='Arial', fontsize=str(20 * zoom_factor), width=str(1 * zoom_factor), height=str(1 * zoom_factor),
-             margin='0.2', penwidth='2')
-    dot.attr('edge', fontname='Arial', fontsize=str(20 * zoom_factor))
+    dot.attr(rankdir='LR', size='14,8')
+   
 
     # Draw nodes
     for state in dfa.states:
