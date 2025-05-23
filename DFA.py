@@ -264,7 +264,7 @@ with tab1:
         dfa = dfa_ab
         alphabet = alphabet_ab
         dfa_title = "🌟 DFA Compiler & Visualizer (a and b)"
-        dfa_pattern = "This DFA matches the pattern: (a+b)\*(aa+bb)(aa+bb)\*(ab+ba+aba)(bab+aba+bbb)(a+b+aa+bb)\*(bb+aa+aba)(aaa+bba+bab)(aaa+bba+bab)\*"
+        dfa_pattern = "This DFA matches the pattern: (a+b)\* (aa+bb) (aa+bb)\* (ab+ba+aba) (bab+aba+bbb) (a+b+aa+bb)\* (bb+aa+aba) (aaa+bba+bab) (aaa+bba+bab)\*"
         st.sidebar.title("Valid String Examples")
         st.sidebar.code("""
         baabbabaabaababba
