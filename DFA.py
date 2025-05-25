@@ -265,7 +265,7 @@ with tab1:
         dfa = dfa_01
         alphabet = alphabet_01
         dfa_title = "🌟 DFA Compiler & Visualizer (0 and 1)"
-        dfa_pattern = "This DFA matches 
+        dfa_pattern = "This DFA matches"
         st.sidebar.code("""
         101011101101
         010110101000
